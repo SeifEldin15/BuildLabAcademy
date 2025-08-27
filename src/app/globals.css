@@ -1,9 +1,36 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --main-color: #5AA8D6;
+  --button-color-1: #CBDEF3;
+  --button-color-2: #F0E1CD;
+  --secondary-color: #394F5B;
+  --accent-color:#FAC986;
 }
+
+/* Custom utility classes using root variables */
+.bg-main-color { background-color: var(--main-color); }
+.bg-button-color-1 { background-color: var(--button-color-1); }
+.bg-button-color-2 { background-color: var(--button-color-2); }
+.bg-secondary-color { background-color: var(--secondary-color); }
+.bg-accent-color { background-color: var(--accent-color); }
+
+.text-main-color { color: var(--main-color); }
+.text-button-color-1 { color: var(--button-color-1); }
+.text-button-color-2 { color: var(--button-color-2); }
+.text-secondary-color { color: var(--secondary-color); }
+.text-accent-color { color: var(--accent-color); }
+
+.border-main-color { border-color: var(--main-color); }
+.border-button-color-1 { border-color: var(--button-color-1); }
+.border-button-color-2 { border-color: var(--button-color-2); }
+.border-secondary-color { border-color: var(--secondary-color); }
+.border-accent-color { border-color: var(--accent-color); }
+
+/* Orbitron font utility */
+.font-orbitron { font-family: 'Orbitron', monospace; }
 
 @media (prefers-color-scheme: dark) {
   :root {
