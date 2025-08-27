@@ -7,8 +7,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-     
-        <img src="/logo.png" alt="Build Lab Academy Logo" />
+          <Image src="/logo.png" alt="Build Lab Academy Logo" width={40} height={40} />
         </div>
 
         {/* Navigation Links */}
