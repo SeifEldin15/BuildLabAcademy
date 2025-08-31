@@ -28,18 +28,6 @@ export default function Navbar() {
           {/* Buttons */}
           <div className="flex items-center space-x-4">
             <Link 
-              href="/login"
-              className="text-secondary-color hover:text-main-color font-medium"
-            >
-              Login
-            </Link>
-            <Link 
-              href="/signup"
-              className="bg-button-color-2 text-black px-4 py-2 rounded-full hover:bg-main-color hover:text-black transition-colors font-medium"
-            >
-              Sign Up
-            </Link>
-            <Link 
               href="/student-portal"
               className="bg-button-color-2 text-black px-4 py-2 rounded-full hover:bg-main-color hover:text-black transition-colors font-medium"
             >
