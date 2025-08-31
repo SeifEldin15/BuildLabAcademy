@@ -58,7 +58,7 @@ export default function VerifyCodePage() {
       <div className="w-full lg:w-2/5 flex flex-col p-8 bg-gray-50">
         <div className="flex justify-center mb-8">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Build Lab Academy"
             width={160}
             height={64}

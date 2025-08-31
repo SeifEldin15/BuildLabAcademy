@@ -8,7 +8,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Link href="/">
-            <Image src="/logo.png" alt="Build Lab Academy Logo" width={80} height={80} className="cursor-pointer" />
+            <Image src="/logo.svg" alt="Build Lab Academy Logo" width={80} height={80} className="cursor-pointer" />
           </Link>
         </div>
 

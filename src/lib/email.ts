@@ -66,7 +66,7 @@ export const sendNewsletterWelcomeEmail = async (email: string, unsubscribeToken
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <img src="${process.env.NEXTAUTH_URL}/logo.png" alt="Build Lab Academy" style="height: 60px;">
+          <img src="${process.env.NEXTAUTH_URL}/logo.svg" alt="Build Lab Academy" style="height: 60px;">
         </div>
         
         <h2 style="color: #1f2937; text-align: center;">Welcome to Our Newsletter! 🎉</h2>
@@ -115,7 +115,7 @@ export const sendNewsletterEmail = async (emails: string[], subject: string, con
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <img src="${process.env.NEXTAUTH_URL}/logo.png" alt="Build Lab Academy" style="height: 60px;">
+            <img src="${process.env.NEXTAUTH_URL}/logo.svg" alt="Build Lab Academy" style="height: 60px;">
           </div>
           
           ${content}

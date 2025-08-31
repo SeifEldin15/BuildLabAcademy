@@ -59,7 +59,7 @@ export default function Footer() {
           <div className="space-y-4 justify-self-start">
             <div className="flex items-center space-x-2">
               <Link href="/">
-                <img src="/logo.png" alt="Build Lab Academy Logo" className="w-12 h-12 cursor-pointer" />
+                <img src="/logo.svg" alt="Build Lab Academy Logo" className="w-12 h-12 cursor-pointer" />
               </Link>
             </div>
             <p className="text-black/70 text-sm leading-relaxed">
