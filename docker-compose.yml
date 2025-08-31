@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: buildlab_postgres
+    environment:
+      POSTGRES_DB: buildlab_db
+      POSTGRES_USER: buildlab_user
+      POSTGRES_PASSWORD: buildlab_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    restart: unless-stopped
+
+  adminer:
+    image: adminer
+    container_name: buildlab_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
