@@ -40,9 +40,10 @@ export default function OurMission() {
           
           {/* Right side - Content */}
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">
               What was the first thing I built that changed my life?
             </h3>
+            <div className="w-24 h-1 bg-purple-300 rounded-full mb-6 mx-auto"></div>
             <p className="text-gray-600 leading-relaxed">
               A square foot garden. I started cutting boards—and I haven't stopped building since. 
               From painting rental homes with a sprayer I bought in college, to remodeling basements, kitchens, and even 
@@ -57,9 +58,10 @@ export default function OurMission() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Left side - Content */}
           <div className="lg:order-1">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">
               Why I Started Build Labs Academy
             </h3>
+            <div className="w-24 h-1 bg-purple-300 rounded-full mb-6 mx-auto"></div>
             <p className="text-gray-600 mb-6 leading-relaxed">
               Like many, I worked in IT for years—but my true passion has always been building. Over time, I taught myself how to:
             </p>
@@ -147,9 +149,10 @@ export default function OurMission() {
           
           {/* Right side - Content */}
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">
               Our Mission
             </h3>
+            <div className="w-24 h-1 bg-purple-300 rounded-full mb-6 mx-auto"></div>
             <p className="text-gray-600 leading-relaxed">
               To empower everyday people to build with confidence by teaching foundational construction 
               skills through hands-on learning, expert guidance, and real-world projects.
