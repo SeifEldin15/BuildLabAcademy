@@ -42,6 +42,57 @@ export default function ApplyPage() {
   ];
 
   const handleNext = () => {
+    // Validation for each step
+    if (currentStep === 1 && !formData.courseType) {
+      alert('Please select a course type (Group or Individual)');
+      return;
+    }
+    
+    if (currentStep === 2) {
+      if (!formData.interest.trim()) {
+        alert('Please tell us why you are interested in this construction boot camp');
+        return;
+      }
+      if (!formData.additionalInfo.trim()) {
+        alert('Please provide additional information about yourself');
+        return;
+      }
+    }
+    
+    if (currentStep === 3) {
+      if (!formData.workExperience.trim()) {
+        alert('Please describe your work experience (or write "None" if you have no experience)');
+        return;
+      }
+      if (!formData.existingSkills.trim()) {
+        alert('Please list your existing skills (or write "None" if you have no relevant skills)');
+        return;
+      }
+      if (!formData.teamRole.trim()) {
+        alert('Please describe your team role and approach to feedback');
+        return;
+      }
+    }
+    
+    if (currentStep === 4) {
+      if (formData.canCommit === null) {
+        alert('Please answer if you can commit to the full schedule');
+        return;
+      }
+      if (formData.hasSteelBoots === null) {
+        alert('Please answer if you have or are willing to get steel-toed boots');
+        return;
+      }
+      if (formData.interestedInBootcamp === null) {
+        alert('Please answer if you are interested in this construction boot camp');
+        return;
+      }
+      if (!formData.finalComments.trim()) {
+        alert('Please provide any final comments (or write "None" if you have no additional comments)');
+        return;
+      }
+    }
+
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
     }
@@ -67,7 +118,7 @@ export default function ApplyPage() {
           <div className="space-y-8">
             <div className="text-center">
               <h2 className="text-2xl font-bold text-gray-800 mb-8">
-                What type of courses want to book
+                What type of courses want to book <span className="text-red-500">*</span>
               </h2>
             </div>
             
@@ -103,7 +154,7 @@ export default function ApplyPage() {
           <div className="space-y-8">
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                Why are you interested in this construction boot camp?
+                Why are you interested in this construction boot camp? <span className="text-red-500">*</span>
               </h3>
               <textarea
                 value={formData.interest}
@@ -111,12 +162,13 @@ export default function ApplyPage() {
                 placeholder="Tell us about your interest..."
                 className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 rows={5}
+                required
               />
             </div>
 
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                Is there anything else you'd like us to know about you or your interest in this program?
+                Is there anything else you'd like us to know about you or your interest in this program? <span className="text-red-500">*</span>
               </h3>
               <textarea
                 value={formData.additionalInfo}
@@ -124,6 +176,7 @@ export default function ApplyPage() {
                 placeholder="Share additional information..."
                 className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 rows={5}
+                required
               />
             </div>
           </div>
@@ -134,33 +187,35 @@ export default function ApplyPage() {
           <div className="space-y-8">
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                Have you ever worked on a construction site or in a trade (e.g., plumbing, carpentry, electrical)? If yes, please describe.
+                Have you ever worked on a construction site or in a trade (e.g., plumbing, carpentry, electrical)? If yes, please describe. <span className="text-red-500">*</span>
               </h3>
               <textarea
                 value={formData.workExperience}
                 onChange={(e) => handleInputChange('workExperience', e.target.value)}
-                placeholder="Describe your work experience..."
+                placeholder="Describe your work experience or write 'None' if you have no experience..."
                 className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 rows={4}
+                required
               />
             </div>
 
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                What skills do you already have related to construction, tools, or physical work?
+                What skills do you already have related to construction, tools, or physical work? <span className="text-red-500">*</span>
               </h3>
               <textarea
                 value={formData.existingSkills}
                 onChange={(e) => handleInputChange('existingSkills', e.target.value)}
-                placeholder="List your relevant skills..."
+                placeholder="List your relevant skills or write 'None' if you have no relevant skills..."
                 className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 rows={4}
+                required
               />
             </div>
 
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                You'll be working in a team environment. What role do you typically play on a team? How do you handle feedback or correction?
+                You'll be working in a team environment. What role do you typically play on a team? How do you handle feedback or correction? <span className="text-red-500">*</span>
               </h3>
               <textarea
                 value={formData.teamRole}
@@ -168,6 +223,7 @@ export default function ApplyPage() {
                 placeholder="Describe your team role and approach to feedback..."
                 className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 rows={4}
+                required
               />
             </div>
           </div>
@@ -178,7 +234,7 @@ export default function ApplyPage() {
           <div className="space-y-8">
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                The program requires hands-on attendance for 40 weeks/hours plus extra time required by you. Are you able to commit to the full schedule?
+                The program requires hands-on attendance for 40 weeks/hours plus extra time required by you. Are you able to commit to the full schedule? <span className="text-red-500">*</span>
               </h3>
               <div className="space-y-4">
                 <label className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 cursor-pointer transition-colors">
@@ -188,6 +244,7 @@ export default function ApplyPage() {
                     checked={formData.canCommit === true}
                     onChange={() => handleInputChange('canCommit', true)}
                     className="mr-4 h-5 w-5 text-blue-600 focus:ring-blue-500"
+                    required
                   />
                   <span className="text-lg text-gray-700">Yes</span>
                 </label>
@@ -198,6 +255,7 @@ export default function ApplyPage() {
                     checked={formData.canCommit === false}
                     onChange={() => handleInputChange('canCommit', false)}
                     className="mr-4 h-5 w-5 text-blue-600 focus:ring-blue-500"
+                    required
                   />
                   <span className="text-lg text-gray-700">No</span>
                 </label>
@@ -206,7 +264,7 @@ export default function ApplyPage() {
 
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                Do you have steel-toed boots or are you willing to get them?
+                Do you have steel-toed boots or are you willing to get them? <span className="text-red-500">*</span>
               </h3>
               <div className="space-y-4">
                 <label className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 cursor-pointer transition-colors">
@@ -216,6 +274,7 @@ export default function ApplyPage() {
                     checked={formData.hasSteelBoots === true}
                     onChange={() => handleInputChange('hasSteelBoots', true)}
                     className="mr-4 h-5 w-5 text-blue-600 focus:ring-blue-500"
+                    required
                   />
                   <span className="text-lg text-gray-700">Yes</span>
                 </label>
@@ -226,6 +285,7 @@ export default function ApplyPage() {
                     checked={formData.hasSteelBoots === false}
                     onChange={() => handleInputChange('hasSteelBoots', false)}
                     className="mr-4 h-5 w-5 text-blue-600 focus:ring-blue-500"
+                    required
                   />
                   <span className="text-lg text-gray-700">No</span>
                 </label>
@@ -234,7 +294,7 @@ export default function ApplyPage() {
 
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                Are you interested in this construction boot camp or individual class?
+                Are you interested in this construction boot camp or individual class? <span className="text-red-500">*</span>
               </h3>
               <div className="space-y-4">
                 <label className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 cursor-pointer transition-colors">
@@ -244,6 +304,7 @@ export default function ApplyPage() {
                     checked={formData.interestedInBootcamp === true}
                     onChange={() => handleInputChange('interestedInBootcamp', true)}
                     className="mr-4 h-5 w-5 text-blue-600 focus:ring-blue-500"
+                    required
                   />
                   <span className="text-lg text-gray-700">Yes</span>
                 </label>
@@ -254,6 +315,7 @@ export default function ApplyPage() {
                     checked={formData.interestedInBootcamp === false}
                     onChange={() => handleInputChange('interestedInBootcamp', false)}
                     className="mr-4 h-5 w-5 text-blue-600 focus:ring-blue-500"
+                    required
                   />
                   <span className="text-lg text-gray-700">No</span>
                 </label>
@@ -262,14 +324,15 @@ export default function ApplyPage() {
 
             <div>
               <h3 className="text-xl font-semibold mb-6 text-gray-800">
-                Is there anything else you'd like us to know about you or your interest in this program?
+                Is there anything else you'd like us to know about you or your interest in this program? <span className="text-red-500">*</span>
               </h3>
               <textarea
                 value={formData.finalComments}
                 onChange={(e) => handleInputChange('finalComments', e.target.value)}
-                placeholder="Share any additional comments..."
+                placeholder="Share any additional comments or write 'None' if you have no additional comments..."
                 className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 rows={5}
+                required
               />
             </div>
           </div>
