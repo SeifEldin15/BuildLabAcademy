@@ -46,9 +46,9 @@ export default function OurMission() {
               What was the first thing I built that changed my life?
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              A square foot garden. I started cutting boards—and I haven&apos;t stopped building since. 
+              A square foot garden. I started cutting boards—and I haven't stopped building since. 
               From painting rental homes with a sprayer I bought in college, to remodeling basements, kitchens, and even 
-              building a tiny house from the ground up—I&apos;ve spent years learning the hard way: project by project, video by video, 
+              building a tiny house from the ground up—I've spent years learning the hard way: project by project, video by video, 
               and mistake by mistake. What I lacked was something I now want to create for others: a structured path to learning the 
               foundational skills of construction.
             </p>
@@ -92,7 +92,7 @@ export default function OurMission() {
               to teach these foundational principles simply, clearly, and with hands-on experience.
             </p>
             <p className="text-gray-600 font-medium">
-              That&apos;s what Build Labs Academy is.
+              That's what Build Labs Academy is.
             </p>
           </div>
           
@@ -224,7 +224,7 @@ export default function OurMission() {
                 Student Portal & Learning Resources
               </h4>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Access a full library of videos, tutorials, and step-by-step guides so you can revisit what you&apos;ve learned anytime.
+                Access a full library of videos, tutorials, and step-by-step guides so you can revisit what you've learned anytime.
               </p>
             </div>
           </div>

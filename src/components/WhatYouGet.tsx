@@ -1,14 +1,12 @@
-import Image from 'next/image';
 export default function WhatYouGet() {
   return (
     <section className="bg-main-color py-16 px-4 relative overflow-hidden">
       {/* Vector Pattern Background */}
       <div className="absolute inset-0 flex items-center justify-center z-20">
-        <Image 
+        <img 
           src="/Vector.png" 
           alt="Vector Pattern" 
-          width={600} height={600}
-          className="object-contain translate-x-8"
+          className="w-[600px] h-[600px] object-contain translate-x-8"
         />
       </div>
       
@@ -28,7 +26,6 @@ export default function WhatYouGet() {
             <div className="flex items-center justify-between mb-6">
               <div className="w-16 h-16 flex items-center justify-center">
                 <img src="/what1.png" alt="" />
-                <Image src="/what1.png" alt="" width={64} height={64} />
               </div>
               <div className="w-8 h-8 border-2 border-accent-color rounded flex items-center justify-center text-accent-color">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -48,7 +45,6 @@ export default function WhatYouGet() {
               <div className="w-16 h-16 flex items-center justify-center">
                 {/* Tools/Box Icon */}
               <img src="/what2.png" alt="Tools/Box Icon" />
-              <Image src="/what2.png" alt="Tools/Box Icon" width={64} height={64} />
               </div>
               <div className="w-8 h-8 border-2 border-accent-color rounded flex items-center justify-center text-accent-color">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -68,7 +64,6 @@ export default function WhatYouGet() {
               <div className="w-16 h-16 flex items-center justify-center">
                 {/* Computer/Monitor Icon */}
                 <img src="/what3.png" alt="Computer/Monitor Icon" />
-                <Image src="/what3.png" alt="Computer/Monitor Icon" width={64} height={64} />
               </div>
               <div className="w-8 h-8 border-2 border-accent-color rounded flex items-center justify-center text-accent-color">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
