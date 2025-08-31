@@ -74,24 +74,24 @@ export default function ApplyPage() {
             <div className="flex justify-center space-x-6">
               <button
                 onClick={() => handleInputChange('courseType', 'group')}
-                className={`px-8 py-4 rounded-full font-medium transition-colors flex items-center space-x-2 ${
+                className={`rounded-full font-medium transition-all duration-200 flex items-center space-x-2 border-2 ${
                   formData.courseType === 'group'
-                    ? 'bg-orange-300 text-black'
-                    : 'bg-orange-200 text-black hover:bg-orange-300'
+                    ? 'px-8 py-4 bg-accent-color text-black border-accent-color shadow-lg transform scale-102'
+                    : 'px-8 py-4 bg-button-color-2 text-black hover:bg-main-color border-transparent'
                 }`}
               >
-                <span>👥</span>
+                <Image src="/Group.png" alt="Group" width={24} height={24} />
                 <span>Group</span>
               </button>
               <button
                 onClick={() => handleInputChange('courseType', 'individual')}
-                className={`px-8 py-4 rounded-full font-medium transition-colors flex items-center space-x-2 ${
+                className={`rounded-full font-medium transition-all duration-200 flex items-center space-x-2 border-2 ${
                   formData.courseType === 'individual'
-                    ? 'bg-blue-300 text-black'
-                    : 'bg-blue-200 text-black hover:bg-blue-300'
+                    ? 'px-8 py-4 bg-main-color text-white border-main-color shadow-lg transform scale-102'
+                    : 'px-8 py-4 bg-button-color-1 text-black hover:bg-secondary-color border-transparent'
                 }`}
               >
-                <span>👤</span>
+                <Image src="/Individual.png" alt="Individual" width={24} height={24} />
                 <span>Individual</span>
               </button>
             </div>
@@ -380,7 +380,7 @@ export default function ApplyPage() {
                 className={`px-12 py-3 rounded-full font-medium text-lg ${
                   currentStep === 1
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-yellow-300 text-black hover:bg-yellow-400 transition-colors'
+                    : 'bg-button-color-2 text-black hover:bg-main-color hover:text-black transition-colors'
                 }`}
               >
                 Back
@@ -392,7 +392,7 @@ export default function ApplyPage() {
                 className={`px-12 py-3 rounded-full font-medium text-lg ${
                   currentStep === 5
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-blue-300 text-black hover:bg-blue-400 transition-colors'
+                    : 'bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors'
                 }`}
               >
                 Next
