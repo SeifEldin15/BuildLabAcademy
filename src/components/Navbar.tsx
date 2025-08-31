@@ -7,7 +7,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Image src="/logo.png" alt="Build Lab Academy Logo" width={80} height={80} />
+          <Link href="/">
+            <Image src="/logo.png" alt="Build Lab Academy Logo" width={80} height={80} className="cursor-pointer" />
+          </Link>
         </div>
 
         {/* Navigation Links */}

@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function CreatePasswordPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     newPassword: '',
     confirmPassword: ''
@@ -30,7 +32,7 @@ export default function CreatePasswordPage() {
     // Handle create new password logic here
     console.log('Create new password:', formData);
     // Redirect to login page
-    window.location.href = '/login';
+    router.push('/login');
   };
 
   return (

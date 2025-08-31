@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
   return (
     <footer className="bg-main-color py-12 px-4 relative overflow-hidden">
@@ -14,7 +16,9 @@ export default function Footer() {
           {/* Company Logo & Description */}
           <div className="space-y-4 justify-self-start">
             <div className="flex items-center space-x-2">
-              <img src="/logo.png" alt="Build Lab Academy Logo" className="w-12 h-12" />
+              <Link href="/">
+                <img src="/logo.png" alt="Build Lab Academy Logo" className="w-12 h-12 cursor-pointer" />
+              </Link>
             </div>
             <p className="text-black/70 text-sm leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet neque tortor.
@@ -55,9 +59,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black/70 hover:text-black transition-colors text-sm">
+                <Link href="/about-us" className="text-black/70 hover:text-black transition-colors text-sm">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-black/70 hover:text-black transition-colors text-sm">

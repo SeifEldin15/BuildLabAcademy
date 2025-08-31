@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function AboutUsHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -18,9 +20,11 @@ export default function AboutUsHero() {
         </p>
         
         {/* Call-to-Action Button */}
-        <button className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium">
-          Apply Now
-        </button>
+        <Link href="/apply">
+          <button className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium">
+            Apply Now
+          </button>
+        </Link>
       </div>
     </section>
   );

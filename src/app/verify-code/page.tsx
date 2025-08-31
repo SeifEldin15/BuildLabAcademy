@@ -3,10 +3,12 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function VerifyCodePage() {
   const [codes, setCodes] = useState(['', '', '', '']);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const router = useRouter();
 
   const handleInputChange = (index: number, value: string) => {
     if (value.length > 1) return; // Only allow single digits
@@ -38,7 +40,7 @@ export default function VerifyCodePage() {
     // Handle verification logic here
     console.log('Verification code:', verificationCode);
     // Redirect to create password page
-    window.location.href = '/create-password';
+    router.push('/create-password');
   };
 
   const handleResendCode = () => {
