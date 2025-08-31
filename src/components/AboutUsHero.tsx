@@ -18,7 +18,7 @@ export default function AboutUsHero() {
         </p>
         
         {/* Call-to-Action Button */}
-        <button className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-full text-lg border border-white/30 transition-all duration-300 hover:scale-105">
+        <button className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium">
           Apply Now
         </button>
       </div>
