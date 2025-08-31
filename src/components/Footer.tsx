@@ -1,6 +1,48 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      setMessage('Please enter your email address');
+      return;
+    }
+
+    setIsLoading(true);
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message);
+        setEmail('');
+      } else {
+        setMessage(data.error || 'Something went wrong');
+      }
+    } catch (error) {
+      setMessage('Network error. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <footer className="bg-main-color py-12 px-4 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -111,16 +153,28 @@ export default function Footer() {
           <div className="md:col-span-2 flex flex-col">
             <h3 className="font-bold text-lg mb-6">Newsletter</h3>
             <div className="space-y-4">
-              <div className="relative bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-sm">
+              <form onSubmit={handleNewsletterSubmit} className="relative bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-sm">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   className="w-full pl-6 pr-36 py-4 bg-transparent text-gray-700 placeholder-gray-400 focus:outline-none rounded-2xl"
+                  disabled={isLoading}
                 />
-                <button className="absolute right-2 top-1/2 transform -translate-y-1/2 px-5 py-2 bg-button-color-1 text-black rounded-full hover:bg-blue-500 transition-colors font-bold">
-                  Subscribe
+                <button 
+                  type="submit"
+                  disabled={isLoading}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-5 py-2 bg-button-color-1 text-black rounded-full hover:bg-blue-500 transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Subscribing...' : 'Subscribe'}
                 </button>
-              </div>
+              </form>
+              {message && (
+                <p className={`text-sm mt-2 ${message.includes('error') || message.includes('wrong') ? 'text-red-600' : 'text-green-600'}`}>
+                  {message}
+                </p>
+              )}
             </div>
           </div>
         </div>

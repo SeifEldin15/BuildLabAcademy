@@ -55,3 +55,84 @@ export const sendPasswordResetEmail = async (email: string, resetToken: string) 
 
   await transporter.sendMail(mailOptions);
 };
+
+export const sendNewsletterWelcomeEmail = async (email: string, unsubscribeToken: string) => {
+  const unsubscribeUrl = `${process.env.NEXTAUTH_URL}/api/newsletter/unsubscribe?token=${unsubscribeToken}`;
+  
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Welcome to Build Lab Academy Newsletter! 🎉',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <img src="${process.env.NEXTAUTH_URL}/logo.png" alt="Build Lab Academy" style="height: 60px;">
+        </div>
+        
+        <h2 style="color: #1f2937; text-align: center;">Welcome to Our Newsletter! 🎉</h2>
+        
+        <p style="color: #4b5563; font-size: 16px; line-height: 1.6;">
+          Thank you for subscribing to the Build Lab Academy newsletter! You're now part of our community of learners and builders.
+        </p>
+        
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #1f2937; margin-top: 0;">What to expect:</h3>
+          <ul style="color: #4b5563; line-height: 1.6;">
+            <li>🚀 Latest course updates and new releases</li>
+            <li>💡 Exclusive tips and tutorials</li>
+            <li>🎯 Career guidance and industry insights</li>
+            <li>🎁 Special offers and early access to new content</li>
+          </ul>
+        </div>
+        
+        <p style="color: #4b5563; font-size: 16px; line-height: 1.6;">
+          We're excited to have you on board and can't wait to share amazing content with you!
+        </p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${process.env.NEXTAUTH_URL}" style="background: #3b82f6; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">Explore Our Courses</a>
+        </div>
+        
+        <hr style="border: 1px solid #e5e7eb; margin: 30px 0;">
+        
+        <p style="color: #9ca3af; font-size: 12px; text-align: center;">
+          You can <a href="${unsubscribeUrl}" style="color: #6b7280;">unsubscribe</a> at any time.<br>
+          Build Lab Academy | Making Learning Accessible
+        </p>
+      </div>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+export const sendNewsletterEmail = async (emails: string[], subject: string, content: string) => {
+  const promises = emails.map(email => {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: `Build Lab Academy - ${subject}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <img src="${process.env.NEXTAUTH_URL}/logo.png" alt="Build Lab Academy" style="height: 60px;">
+          </div>
+          
+          ${content}
+          
+          <hr style="border: 1px solid #e5e7eb; margin: 30px 0;">
+          
+          <p style="color: #9ca3af; font-size: 12px; text-align: center;">
+            You're receiving this because you subscribed to Build Lab Academy newsletter.<br>
+            <a href="${process.env.NEXTAUTH_URL}/api/newsletter/unsubscribe?email=${email}" style="color: #6b7280;">Unsubscribe</a> | 
+            <a href="${process.env.NEXTAUTH_URL}" style="color: #6b7280;">Visit our website</a>
+          </p>
+        </div>
+      `,
+    };
+
+    return transporter.sendMail(mailOptions);
+  });
+
+  await Promise.all(promises);
+};
