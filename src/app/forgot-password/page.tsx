@@ -10,14 +10,12 @@ export default function ForgotPasswordPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle forgot password logic here
     console.log('Reset password for:', email);
     setIsSubmitted(true);
   };
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Image (wider) */}
       <div className="hidden lg:flex lg:w-3/5 relative">
         <Image
           src="/forget.png"
@@ -28,9 +26,7 @@ export default function ForgotPasswordPage() {
         />
       </div>
 
-      {/* Right side - Form (narrower, closer to image) */}
       <div className="w-full lg:w-2/5 flex flex-col p-8 bg-gray-50">
-        {/* Logo - centered to align with form */}
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
@@ -41,7 +37,6 @@ export default function ForgotPasswordPage() {
           />
         </div>
 
-        {/* Form Container */}
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-sm">
             <div className="bg-white rounded-lg shadow-lg p-8">
@@ -55,7 +50,6 @@ export default function ForgotPasswordPage() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Email Field */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
@@ -80,7 +74,6 @@ export default function ForgotPasswordPage() {
                   </Link>
                 </div>
 
-                {/* Back to Login */}
                 <div className="text-center">
                   <Link
                     href="/login"

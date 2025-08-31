@@ -29,15 +29,12 @@ export default function CreatePasswordPage() {
       alert('Passwords do not match');
       return;
     }
-    // Handle create new password logic here
     console.log('Create new password:', formData);
-    // Redirect to login page
     router.push('/login');
   };
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Image (wider) */}
       <div className="hidden lg:flex lg:w-3/5 relative">
         <Image
           src="/forget.png"
@@ -48,9 +45,7 @@ export default function CreatePasswordPage() {
         />
       </div>
 
-      {/* Right side - Form (narrower, closer to image) */}
       <div className="w-full lg:w-2/5 flex flex-col p-8 bg-gray-50">
-        {/* Logo - centered to align with form */}
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
@@ -61,7 +56,6 @@ export default function CreatePasswordPage() {
           />
         </div>
 
-        {/* Form Container */}
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-sm">
             <div className="bg-white rounded-lg shadow-lg p-8">
@@ -70,7 +64,6 @@ export default function CreatePasswordPage() {
               </h1>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* New Password Field */}
                 <div>
                   <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-2">
                     New Password
@@ -117,7 +110,6 @@ export default function CreatePasswordPage() {
                   </div>
                 </div>
 
-                {/* Confirm Password Field */}
                 <div>
                   <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
                     Confirm New Password
@@ -164,7 +156,6 @@ export default function CreatePasswordPage() {
                   </div>
                 </div>
 
-                {/* Create Password Button */}
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"

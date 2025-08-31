@@ -23,18 +23,15 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
     console.log('Login data:', formData);
   };
 
   const handleGoogleLogin = () => {
-    // Handle Google login logic here
     console.log('Google login clicked');
   };
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Image (wider) */}
       <div className="hidden lg:flex lg:w-3/5 relative">
         <Image
           src="/login.png"
@@ -45,9 +42,7 @@ export default function LoginPage() {
         />
       </div>
 
-      {/* Right side - Form (narrower, closer to image) */}
       <div className="w-full lg:w-2/5 flex flex-col p-8 bg-gray-50">
-        {/* Logo - moved to center to align with form */}
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
@@ -58,18 +53,15 @@ export default function LoginPage() {
           />
         </div>
 
-        {/* Form Container */}
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-sm">
 
-          {/* Form */}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h1 className="text-2xl font-bold text-gray-900 mb-8 text-center">
               Nice to see you again
             </h1>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Login Field */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   Login
@@ -86,7 +78,6 @@ export default function LoginPage() {
                 />
               </div>
 
-              {/* Password Field */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                   Password
@@ -133,7 +124,6 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <input
@@ -156,7 +146,6 @@ export default function LoginPage() {
                 </Link>
               </div>
 
-              {/* Sign In Button */}
               <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"
@@ -164,7 +153,6 @@ export default function LoginPage() {
                 Sign In
               </button>
 
-              {/* Google Sign In */}
               <button
                 type="button"
                 onClick={handleGoogleLogin}
@@ -191,7 +179,6 @@ export default function LoginPage() {
                 Or sign in with Google
               </button>
 
-              {/* Sign Up Link */}
               <div className="text-center">
                 <span className="text-gray-600">Don't have an account? </span>
                 <Link

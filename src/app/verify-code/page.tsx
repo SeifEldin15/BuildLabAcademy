@@ -11,20 +11,18 @@ export default function VerifyCodePage() {
   const router = useRouter();
 
   const handleInputChange = (index: number, value: string) => {
-    if (value.length > 1) return; // Only allow single digits
+    if (value.length > 1) return;
 
     const newCodes = [...codes];
     newCodes[index] = value;
     setCodes(newCodes);
 
-    // Auto-focus next input
     if (value && index < 3) {
       inputRefs.current[index + 1]?.focus();
     }
   };
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
-    // Handle backspace to go to previous input
     if (e.key === 'Backspace' && !codes[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
@@ -37,20 +35,16 @@ export default function VerifyCodePage() {
       alert('Please enter all 4 digits');
       return;
     }
-    // Handle verification logic here
     console.log('Verification code:', verificationCode);
-    // Redirect to create password page
     router.push('/create-password');
   };
 
   const handleResendCode = () => {
-    // Handle resend code logic here
     console.log('Resending verification code');
   };
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Image (wider) */}
       <div className="hidden lg:flex lg:w-3/5 relative">
         <Image
           src="/forget.png"
@@ -61,9 +55,7 @@ export default function VerifyCodePage() {
         />
       </div>
 
-      {/* Right side - Form (narrower, closer to image) */}
       <div className="w-full lg:w-2/5 flex flex-col p-8 bg-gray-50">
-        {/* Logo - centered to align with form */}
         <div className="flex justify-center mb-8">
           <Image
             src="/logo.png"
@@ -74,7 +66,6 @@ export default function VerifyCodePage() {
           />
         </div>
 
-        {/* Form Container */}
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-sm">
             <div className="bg-white rounded-lg shadow-lg p-8">
@@ -86,7 +77,6 @@ export default function VerifyCodePage() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Verification Code Inputs */}
                 <div className="flex justify-center space-x-4">
                   {codes.map((code, index) => (
                     <input
@@ -106,7 +96,6 @@ export default function VerifyCodePage() {
                   ))}
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"
@@ -114,7 +103,6 @@ export default function VerifyCodePage() {
                   Send Recovery code
                 </button>
 
-                {/* Resend Code */}
                 <div className="text-center">
                   <button
                     type="button"
@@ -125,7 +113,6 @@ export default function VerifyCodePage() {
                   </button>
                 </div>
 
-                {/* Back to Login */}
                 <div className="text-center">
                   <Link
                     href="/login"
