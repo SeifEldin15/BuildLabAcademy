@@ -168,50 +168,57 @@ export default function OurMission() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Foundational Construction Training */}
             <div className="text-center">
-              <div className="w-20 h-20 bg-purple-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                  <path d="M2 17L12 22L22 17"/>
-                  <path d="M2 12L12 17L22 12"/>
-                </svg>
+              <div className="w-20 h-20 mx-auto mb-6">
+                <Image
+                  src="/abouticon1.png"
+                  alt="Foundational Construction Training"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-4">
+              <h4 className="text-xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Source Serif Pro', fontSize: '24px', fontWeight: 600 }}>
                 Foundational Construction Training
               </h4>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-800 leading-snug" style={{ fontFamily: 'Lato', fontSize: '18px', fontWeight: 400 }}>
                 Learn framing, drywall, electrical basics, painting, roofing, and more—with practical knowledge you can immediately use.
               </p>
             </div>
 
             {/* Tiny House Build Experience */}
             <div className="text-center">
-              <div className="w-20 h-20 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z"/>
-                </svg>
+              <div className="w-20 h-20 mx-auto mb-6">
+                <Image
+                  src="/abouticon2.png"
+                  alt="Tiny House Build Experience"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-4">
-                Tiny House Build Experience
+              <h4 className="text-xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Source Serif Pro', fontSize: '24px', fontWeight: 600 }}>
+                Tiny House Build <br /> Experience
               </h4>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-800 leading-snug" style={{ fontFamily: 'Lato', fontSize: '18px', fontWeight: 400 }}>
                 Get your hands dirty with a real build project and walk away knowing how a home comes together—top to bottom.
               </p>
             </div>
 
             {/* Student Portal & Learning Resources */}
             <div className="text-center">
-              <div className="w-20 h-20 bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"/>
-                  <path d="M7 7H17V9H7V7Z"/>
-                  <path d="M7 11H17V13H7V11Z"/>
-                  <path d="M7 15H13V17H7V15Z"/>
-                </svg>
+              <div className="w-20 h-20 mx-auto mb-6">
+                <Image
+                  src="/abouticon3.png"
+                  alt="Student Portal & Learning Resources"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-4">
+              <h4 className="text-xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Source Serif Pro', fontSize: '24px', fontWeight: 600 }}>
                 Student Portal & Learning Resources
               </h4>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-800 leading-snug" style={{ fontFamily: 'Lato', fontSize: '18px', fontWeight: 400 }}>
                 Access a full library of videos, tutorials, and step-by-step guides so you can revisit what you've learned anytime.
               </p>
             </div>
