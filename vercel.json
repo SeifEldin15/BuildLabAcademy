@@ -7,6 +7,5 @@
     "src/app/api/**/*.ts": {
       "maxDuration": 30
     }
-  },
-  "ignoreCommand": "true"
+  }
 }
