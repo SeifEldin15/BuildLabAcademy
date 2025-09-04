@@ -9,9 +9,11 @@
     "lint": "eslint",
     "db:up": "docker-compose up -d",
     "db:down": "docker-compose down",
-    "db:reset": "docker-compose down -v && docker-compose up -d"
+    "db:reset": "docker-compose down -v && docker-compose up -d",
+    "test:email": "node test-email.js"
   },
   "dependencies": {
+    "@auth/pg-adapter": "^1.10.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/nodemailer": "^7.0.1",
@@ -19,6 +21,7 @@
     "bcryptjs": "^3.0.2",
     "jsonwebtoken": "^9.0.2",
     "next": "15.5.2",
+    "next-auth": "^4.24.11",
     "nodemailer": "^7.0.6",
     "pg": "^8.16.3",
     "react": "19.1.0",
