@@ -13,7 +13,7 @@ const pool = new Pool({
   database: 'buildlab_db',
 })
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   adapter: PostgresAdapter(pool),
   providers: [
     GoogleProvider({
