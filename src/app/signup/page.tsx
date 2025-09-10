@@ -64,7 +64,7 @@ export default function SignupPage() {
     setIsLoading(true);
     try {
       const result = await signIn('google', { 
-        callbackUrl: '/dashboard', // Redirect after successful signup
+        callbackUrl: '/', // Redirect to home page after successful signup
         redirect: false 
       });
       

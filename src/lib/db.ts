@@ -1,8 +1,12 @@
 import { Pool } from 'pg';
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  host: 'localhost',
+  port: 5432,
+  user: 'nextauth_user',
+  database: 'buildlab_db',
+  password: 'nextauth_pass123',
+  ssl: false,
 });
 
 export default pool;

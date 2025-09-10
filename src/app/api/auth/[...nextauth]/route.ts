@@ -1,20 +1,11 @@
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import PostgresAdapter from "@auth/pg-adapter"
-import { Pool } from 'pg'
+import pool from '@/lib/db'
 import type { Account, User } from 'next-auth'
 import type { AdapterUser } from 'next-auth/adapters'
 
-const pool = new Pool({
-  host: 'localhost',
-  port: 5432,
-  user: 'buildlab_user',
-  password: 'buildlab_password',
-  database: 'buildlab_db',
-})
-
 const authOptions: NextAuthOptions = {
-  adapter: PostgresAdapter(pool),
+  // Remove the PostgresAdapter to avoid database connection issues
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -25,24 +16,23 @@ const authOptions: NextAuthOptions = {
     async signIn({ user, account }: { user: User | AdapterUser; account: Account | null }) {
       if (account?.provider === 'google') {
         try {
-          // Check if user already exists in your custom users table
-          const existingUser = await pool.query(
-            'SELECT id FROM users WHERE email = $1',
-            [user.email]
-          );
+          // Use docker exec to interact with database directly to avoid connection issues
+          const { exec } = require('child_process');
+          const util = require('util');
+          const execPromise = util.promisify(exec);
 
-          if (existingUser.rows.length === 0) {
-            // Create user in your custom users table
-            await pool.query(
-              'INSERT INTO users (id, email, name, email_verified, created_at) VALUES ($1, $2, $3, $4, $5)',
-              [user.id, user.email, user.name, true, new Date()]
-            );
+          const checkUserCommand = `docker exec buildlab_postgres psql -U buildlab_user -d buildlab_db -c "SELECT id FROM users WHERE email = '${user.email}';" -t`;
+          const { stdout } = await execPromise(checkUserCommand);
+
+          if (!stdout.trim()) {
+            // Create user in your custom users table using docker exec
+            // For OAuth users, we'll set a placeholder password_hash since it's required
+            const insertUserCommand = `docker exec buildlab_postgres psql -U buildlab_user -d buildlab_db -c "INSERT INTO users (email, name, password_hash, email_verified, created_at) VALUES ('${user.email}', '${user.name?.replace(/'/g, "''")}', 'oauth_user_no_password', true, NOW());"`;
+            await execPromise(insertUserCommand);
           } else {
             // Update existing user's verification status
-            await pool.query(
-              'UPDATE users SET email_verified = true WHERE email = $1',
-              [user.email]
-            );
+            const updateUserCommand = `docker exec buildlab_postgres psql -U buildlab_user -d buildlab_db -c "UPDATE users SET email_verified = true WHERE email = '${user.email}';"`;
+            await execPromise(updateUserCommand);
           }
         } catch (error) {
           console.error('Error handling Google sign-in:', error);
@@ -51,18 +41,26 @@ const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async session({ session, user }: { session: any; user: any }) {
-      // Add user ID to session
-      if (session?.user && user) {
-        session.user.id = user.id;
+    async session({ session, token }: { session: any; token: any }) {
+      // Add user info to session from token
+      if (session?.user && token) {
+        session.user.id = token.sub;
+        session.user.email = token.email;
+        session.user.name = token.name;
       }
       return session;
     },
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({ token, user, account }: { token: any; user: any; account: any }) {
+      // Store user info in JWT token
       if (user) {
-        token.uid = user.id;
+        token.email = user.email;
+        token.name = user.name;
       }
       return token;
+    },
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+      // Always redirect to home page after successful login
+      return baseUrl;
     },
   },
   pages: {
@@ -70,7 +68,7 @@ const authOptions: NextAuthOptions = {
     error: '/login',
   },
   session: {
-    strategy: 'database' as const,
+    strategy: 'jwt' as const,
   },
 }
 

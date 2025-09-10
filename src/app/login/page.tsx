@@ -46,8 +46,8 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Custom login successful, redirect
-        router.push('/dashboard'); // or wherever you want to redirect
+        // Custom login successful, redirect to home page
+        router.push('/'); // Redirect to home page
       } else {
         setError(data.error || 'Login failed');
       }
@@ -62,7 +62,7 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const result = await signIn('google', { 
-        callbackUrl: '/dashboard', // Redirect after successful login
+        callbackUrl: '/', // Redirect to home page after successful login
         redirect: false 
       });
       
