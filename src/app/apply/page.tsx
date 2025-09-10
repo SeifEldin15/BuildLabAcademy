@@ -24,6 +24,8 @@ export default function ApplyPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<ApplicationData>({
     courseType: '',
     interest: '',
@@ -68,7 +70,8 @@ export default function ApplyPage() {
     { id: 2, name: 'Interest cont.', active: currentStep >= 2, completed: currentStep > 2 },
     { id: 3, name: 'Final Questions', active: currentStep >= 3, completed: currentStep > 3 },
     { id: 4, name: 'Payment', active: currentStep >= 4, completed: currentStep > 4 },
-    { id: 5, name: 'Review', active: currentStep >= 5, completed: false }
+    { id: 5, name: 'Review', active: currentStep >= 5, completed: currentStep > 5 },
+    { id: 6, name: 'Complete', active: currentStep >= 6, completed: false }
   ];
 
   const handleNext = () => {
@@ -139,6 +142,35 @@ export default function ApplyPage() {
       ...prev,
       [field]: value
     }));
+  };
+
+  const handleSubmit = async () => {
+    if (isSubmitting || isSubmitted) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/applications/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to submit application');
+      }
+
+      setIsSubmitted(true);
+      setCurrentStep(6); // Move to success page
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      alert(`Failed to submit application: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const renderStepContent = () => {
@@ -384,10 +416,23 @@ export default function ApplyPage() {
               <div><strong>Interested in Bootcamp:</strong> {formData.interestedInBootcamp ? 'Yes' : 'No'}</div>
               <div><strong>Final Comments:</strong> {formData.finalComments}</div>
             </div>
+            <div className="pt-6">
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
+                  isSubmitting
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-green-600 text-white hover:bg-green-700'
+                }`}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Application'}
+              </button>
+            </div>
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className="text-center space-y-6">
             <div className="text-6xl">🎉</div>
@@ -420,7 +465,8 @@ export default function ApplyPage() {
             {currentStep === 1 ? 'Interest' : 
              currentStep === 2 ? 'Interest' : 
              currentStep === 3 ? 'Final Questions' : 
-             currentStep === 4 ? 'Payment' : 'Review'}
+             currentStep === 4 ? 'Payment' : 
+             currentStep === 5 ? 'Review' : 'Complete'}
           </h1>
           
           <div className="space-y-0">
@@ -479,17 +525,18 @@ export default function ApplyPage() {
                 Back
               </button>
               
-              <button
-                onClick={handleNext}
-                disabled={currentStep === 5}
-                className={`px-12 py-3 rounded-full font-medium text-lg ${
-                  currentStep === 5
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors'
-                }`}
-              >
-                Next
-              </button>
+              {currentStep < 5 && (
+                <button
+                  onClick={handleNext}
+                  className="px-12 py-3 rounded-full font-medium text-lg bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors"
+                >
+                  Next
+                </button>
+              )}
+              
+              {currentStep === 6 && (
+                <div className="w-full"></div>
+              )}
             </div>
           </div>
         </div>
