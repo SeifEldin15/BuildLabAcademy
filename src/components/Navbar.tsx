@@ -1,7 +1,30 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  const handleApplyClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (status === 'loading') {
+      return; // Still checking authentication status
+    }
+    
+    if (session) {
+      // User is logged in, go to apply page
+      router.push('/apply');
+    } else {
+      // User is not logged in, go to login page with apply as callback
+      router.push('/login?callbackUrl=' + encodeURIComponent('/apply'));
+    }
+  };
+
   return (
     <nav className="bg-accent-color px-6 py-2">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -35,12 +58,12 @@ export default function Navbar() {
             >
               Student Portal
             </Link>
-            <Link 
-              href="/apply"
+            <button 
+              onClick={handleApplyClick}
               className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium"
             >
-              Apply Now
-            </Link>
+              {session ? 'Apply Now' : 'Login / Apply'}
+            </button>
           </div>
         </div>
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signIn, getSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -17,6 +17,8 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -46,8 +48,8 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Custom login successful, redirect to home page
-        router.push('/'); // Redirect to home page
+        // Custom login successful, redirect to callback URL or home page
+        router.push(callbackUrl);
       } else {
         setError(data.error || 'Login failed');
       }
@@ -62,7 +64,7 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const result = await signIn('google', { 
-        callbackUrl: '/', // Redirect to home page after successful login
+        callbackUrl: callbackUrl, // Redirect to callback URL or home page
         redirect: false 
       });
       
