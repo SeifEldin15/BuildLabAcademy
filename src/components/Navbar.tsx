@@ -62,8 +62,18 @@ export default function Navbar() {
               onClick={handleApplyClick}
               className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium"
             >
-              {session ? 'Apply Now' : 'Login / Apply'}
+              Apply Now
             </button>
+            
+            {/* Login button for non-authenticated users */}
+            {!session && (
+              <Link 
+                href="/login"
+                className="bg-white text-accent-color px-6 py-2 rounded-full hover:bg-gray-100 transition-colors font-medium"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
 

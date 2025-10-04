@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 interface VerificationStatus {
   hasVerification: boolean;
@@ -23,8 +23,11 @@ interface EmailCheckResult {
   message?: string;
 }
 
+type TabType = 'profile' | 'discounts';
+
 export default function StudentPortal() {
   const { data: session, status } = useSession();
+  const [activeTab, setActiveTab] = useState<TabType>('profile');
   const [verificationStatus, setVerificationStatus] = useState<VerificationStatus | null>(null);
   const [loading, setLoading] = useState(true);
   const [applying, setApplying] = useState(false);
@@ -140,12 +143,151 @@ export default function StudentPortal() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Student Discount Portal</h1>
-          <p className="text-gray-600">Get verified and save 20% on Build Lab Academy courses!</p>
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <div className="w-64 bg-white shadow-lg min-h-screen">
+        <div className="p-6 border-b">
+          <h2 className="text-xl font-bold text-gray-900">Student Portal</h2>
+          <p className="text-sm text-gray-600 mt-1">{session.user?.name}</p>
         </div>
+        
+        <nav className="p-4">
+          <button
+            onClick={() => setActiveTab('profile')}
+            className={`w-full text-left px-4 py-3 rounded-lg mb-2 flex items-center transition-colors ${
+              activeTab === 'profile'
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Profile
+          </button>
+          
+          <button
+            onClick={() => setActiveTab('discounts')}
+            className={`w-full text-left px-4 py-3 rounded-lg mb-2 flex items-center transition-colors ${
+              activeTab === 'discounts'
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            Student Discounts
+          </button>
+
+          <div className="mt-8 pt-4 border-t">
+            <button
+              onClick={() => signOut({ callbackUrl: '/' })}
+              className="w-full text-left px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 flex items-center transition-colors"
+            >
+              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Sign Out
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-8">
+        {activeTab === 'profile' ? (
+          <ProfileTab session={session} />
+        ) : (
+          <DiscountsTab
+            verificationStatus={verificationStatus}
+            formData={formData}
+            setFormData={setFormData}
+            emailCheckResult={emailCheckResult}
+            emailChecking={emailChecking}
+            applying={applying}
+            checkEmail={checkEmail}
+            handleSubmit={handleSubmit}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Profile Tab Component
+function ProfileTab({ session }: { session: any }) {
+  return (
+    <div className="max-w-4xl">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">My Profile</h1>
+      
+      <div className="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 className="text-xl font-semibold mb-4">Account Information</h2>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <p className="text-lg text-gray-900">{session?.user?.name || 'Not provided'}</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <p className="text-lg text-gray-900">{session?.user?.email}</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+            <p className="text-lg text-gray-900">Student</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow p-6">
+        <h2 className="text-xl font-semibold mb-4">Quick Stats</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <p className="text-sm text-blue-600 font-medium">Courses Enrolled</p>
+            <p className="text-2xl font-bold text-blue-900">0</p>
+          </div>
+          <div className="bg-green-50 p-4 rounded-lg">
+            <p className="text-sm text-green-600 font-medium">Completed</p>
+            <p className="text-2xl font-bold text-green-900">0</p>
+          </div>
+          <div className="bg-purple-50 p-4 rounded-lg">
+            <p className="text-sm text-purple-600 font-medium">In Progress</p>
+            <p className="text-2xl font-bold text-purple-900">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Discounts Tab Component
+interface DiscountsTabProps {
+  verificationStatus: VerificationStatus | null;
+  formData: any;
+  setFormData: (data: any) => void;
+  emailCheckResult: EmailCheckResult | null;
+  emailChecking: boolean;
+  applying: boolean;
+  checkEmail: () => void;
+  handleSubmit: (e: React.FormEvent) => void;
+}
+
+function DiscountsTab({
+  verificationStatus,
+  formData,
+  setFormData,
+  emailCheckResult,
+  emailChecking,
+  applying,
+  checkEmail,
+  handleSubmit
+}: DiscountsTabProps) {
+  return (
+    <div className="max-w-4xl">
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Student Discount Portal</h1>
+        <p className="text-gray-600">Get verified and save 20% on Build Lab Academy courses!</p>
+      </div>
 
         {/* Current Status */}
         {verificationStatus?.hasVerification ? (
@@ -407,6 +549,5 @@ export default function StudentPortal() {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
