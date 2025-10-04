@@ -64,16 +64,6 @@ export default function Navbar() {
             >
               Apply Now
             </button>
-            
-            {/* Login button for non-authenticated users */}
-            {!session && (
-              <Link 
-                href="/login"
-                className="bg-white text-accent-color px-6 py-2 rounded-full hover:bg-gray-100 transition-colors font-medium"
-              >
-                Login
-              </Link>
-            )}
           </div>
         </div>
 
