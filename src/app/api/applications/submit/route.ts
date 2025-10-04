@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/lib/auth-config';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 
@@ -8,7 +9,7 @@ const execPromise = promisify(exec);
 export async function POST(request: NextRequest) {
   try {
     // Get the session to verify authentication
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
