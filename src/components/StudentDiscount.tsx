@@ -171,7 +171,7 @@ export default function StudentDiscountComponent({
               value={discountCode}
               onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
               placeholder="Enter discount code (e.g., STUDENT-ABC123-XYZ)"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm placeholder-black"
             />
             <button
               onClick={applyDiscount}

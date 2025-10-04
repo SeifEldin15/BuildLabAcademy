@@ -296,7 +296,7 @@ function BootcampRegistrationForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black"
                   placeholder="(555) 123-4567"
                 />
               </div>
@@ -329,7 +329,7 @@ function BootcampRegistrationForm() {
                   name="currentOccupation"
                   value={formData.currentOccupation}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black"
                   placeholder="e.g., Marketing Manager, Student, Career Change"
                 />
               </div>
@@ -381,7 +381,7 @@ function BootcampRegistrationForm() {
                   value={formData.motivation}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black"
                   placeholder="Tell us about your goals and what you hope to achieve..."
                 />
               </div>

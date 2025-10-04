@@ -148,7 +148,7 @@ export default function SignupPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Email or phone number"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors placeholder-black"
                     required
                   />
                 </div>
@@ -163,7 +163,7 @@ export default function SignupPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Enter your name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors placeholder-black"
                     required
                   />
                 </div>
@@ -179,7 +179,7 @@ export default function SignupPage() {
                       value={formData.password}
                       onChange={handleInputChange}
                       placeholder="Enter password"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors pr-12"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors pr-12 placeholder-black"
                       required
                     />
                     <button

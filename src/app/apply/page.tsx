@@ -242,7 +242,7 @@ export default function ApplyPage() {
                 value={formData.interest}
                 onChange={(e) => handleInputChange('interest', e.target.value)}
                 placeholder="Tell us about your interest..."
-                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-black"
                 rows={5}
                 required
               />
@@ -256,7 +256,7 @@ export default function ApplyPage() {
                 value={formData.additionalInfo}
                 onChange={(e) => handleInputChange('additionalInfo', e.target.value)}
                 placeholder="Share additional information..."
-                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-black"
                 rows={5}
                 required
               />
@@ -275,7 +275,7 @@ export default function ApplyPage() {
                 value={formData.workExperience}
                 onChange={(e) => handleInputChange('workExperience', e.target.value)}
                 placeholder="Describe your work experience or write 'None' if you have no experience..."
-                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-black"
                 rows={4}
                 required
               />
@@ -289,7 +289,7 @@ export default function ApplyPage() {
                 value={formData.existingSkills}
                 onChange={(e) => handleInputChange('existingSkills', e.target.value)}
                 placeholder="List your relevant skills or write 'None' if you have no relevant skills..."
-                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-black"
                 rows={4}
                 required
               />
@@ -303,7 +303,7 @@ export default function ApplyPage() {
                 value={formData.teamRole}
                 onChange={(e) => handleInputChange('teamRole', e.target.value)}
                 placeholder="Describe your team role and approach to feedback..."
-                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-black"
                 rows={4}
                 required
               />
@@ -412,7 +412,7 @@ export default function ApplyPage() {
                 value={formData.finalComments}
                 onChange={(e) => handleInputChange('finalComments', e.target.value)}
                 placeholder="Share any additional comments or write 'None' if you have no additional comments..."
-                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-6 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-black"
                 rows={5}
                 required
               />

@@ -128,7 +128,7 @@ export default function StudentPortal() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-md w-full bg-white p-8 rounded-lg shadow">
-          <h1 className="text-2xl font-bold text-center mb-4">Student Portal</h1>
+          <h1 className="text-2xl font-bold text-center mb-4 text-black">Student Portal</h1>
           <p className="text-gray-600 text-center mb-6">
             Please log in to access the student discount portal.
           </p>
@@ -147,7 +147,7 @@ export default function StudentPortal() {
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-lg min-h-screen">
         <div className="p-6 border-b">
-          <h2 className="text-xl font-bold text-gray-900">Student Portal</h2>
+          <h2 className="text-xl font-bold text-black">Student Portal</h2>
           <p className="text-sm text-gray-600 mt-1">{session.user?.name}</p>
         </div>
         
@@ -219,10 +219,10 @@ export default function StudentPortal() {
 function ProfileTab({ session }: { session: any }) {
   return (
     <div className="max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">My Profile</h1>
+      <h1 className="text-3xl font-bold text-black mb-6">My Profile</h1>
       
       <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Account Information</h2>
+        <h2 className="text-xl font-semibold mb-4 text-black">Account Information</h2>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -240,7 +240,7 @@ function ProfileTab({ session }: { session: any }) {
       </div>
 
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold mb-4">Quick Stats</h2>
+        <h2 className="text-xl font-semibold mb-4 text-black">Quick Stats</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-600 font-medium">Courses Enrolled</p>
@@ -285,14 +285,14 @@ function DiscountsTab({
   return (
     <div className="max-w-4xl">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Student Discount Portal</h1>
+        <h1 className="text-3xl font-bold text-black mb-2">Student Discount Portal</h1>
         <p className="text-gray-600">Get verified and save 20% on Build Lab Academy courses!</p>
       </div>
 
         {/* Current Status */}
         {verificationStatus?.hasVerification ? (
           <div className="bg-white rounded-lg shadow p-6 mb-8">
-            <h2 className="text-xl font-semibold mb-4">Your Verification Status</h2>
+            <h2 className="text-xl font-semibold mb-4 text-black">Your Verification Status</h2>
             
             {verificationStatus.status === 'verified' ? (
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
@@ -373,12 +373,12 @@ function DiscountsTab({
         {/* Application Form */}
         {!verificationStatus?.hasVerification || verificationStatus.status === 'rejected' ? (
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Apply for Student Discount</h2>
+            <h2 className="text-xl font-semibold mb-4 text-black">Apply for Student Discount</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email Check Section */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-black mb-2">
                   Student Email Address
                 </label>
                 <div className="flex gap-2">
@@ -387,7 +387,7 @@ function DiscountsTab({
                     id="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black"
                     placeholder="your-email@university.edu"
                     required
                   />
@@ -414,7 +414,7 @@ function DiscountsTab({
               {/* Personal Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="firstName" className="block text-sm font-medium text-black mb-2">
                     First Name
                   </label>
                   <input
@@ -422,12 +422,13 @@ function DiscountsTab({
                     id="firstName"
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black"
+                    placeholder="First Name"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="lastName" className="block text-sm font-medium text-black mb-2">
                     Last Name
                   </label>
                   <input
@@ -435,7 +436,8 @@ function DiscountsTab({
                     id="lastName"
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black"
+                    placeholder="Last Name"
                     required
                   />
                 </div>
@@ -443,7 +445,7 @@ function DiscountsTab({
 
               {/* School Information */}
               <div>
-                <label htmlFor="schoolName" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="schoolName" className="block text-sm font-medium text-black mb-2">
                   School/University Name (Optional)
                 </label>
                 <input
@@ -451,7 +453,7 @@ function DiscountsTab({
                   id="schoolName"
                   value={formData.schoolName}
                   onChange={(e) => setFormData({ ...formData, schoolName: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black"
                   placeholder="University of Toronto"
                 />
               </div>
@@ -459,7 +461,7 @@ function DiscountsTab({
               {/* Additional Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="graduationDate" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="graduationDate" className="block text-sm font-medium text-black mb-2">
                     Expected Graduation Date (Optional)
                   </label>
                   <input
@@ -467,11 +469,11 @@ function DiscountsTab({
                     id="graduationDate"
                     value={formData.graduationDate}
                     onChange={(e) => setFormData({ ...formData, graduationDate: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black"
                   />
                 </div>
                 <div>
-                  <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="studentId" className="block text-sm font-medium text-black mb-2">
                     Student ID (Optional)
                   </label>
                   <input
@@ -479,7 +481,7 @@ function DiscountsTab({
                     id="studentId"
                     value={formData.studentId}
                     onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black"
                     placeholder="Student ID Number"
                   />
                 </div>
@@ -487,7 +489,7 @@ function DiscountsTab({
 
               {/* Verification Method */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Verification Method
                 </label>
                 <div className="space-y-2">
@@ -500,7 +502,7 @@ function DiscountsTab({
                       onChange={(e) => setFormData({ ...formData, verificationMethod: e.target.value })}
                       className="mr-2"
                     />
-                    <span>Email Domain Verification (Instant for recognized domains)</span>
+                    <span className="text-black">Email Domain Verification (Instant for recognized domains)</span>
                   </label>
                   <label className="flex items-center">
                     <input
@@ -511,7 +513,7 @@ function DiscountsTab({
                       onChange={(e) => setFormData({ ...formData, verificationMethod: e.target.value })}
                       className="mr-2"
                     />
-                    <span>Third-party Verification (Most accurate, may require additional steps)</span>
+                    <span className="text-black">Third-party Verification (Most accurate, may require additional steps)</span>
                   </label>
                 </div>
               </div>
@@ -530,7 +532,7 @@ function DiscountsTab({
 
         {/* Information Section */}
         <div className="mt-8 bg-blue-50 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-blue-900 mb-3">About Student Discounts</h3>
+          <h3 className="text-lg font-semibold text-black mb-3">About Student Discounts</h3>
           <div className="text-blue-800 space-y-2">
             <p>• <strong>20% discount</strong> on all Build Lab Academy courses</p>
             <p>• <strong>Instant verification</strong> for recognized educational email domains</p>
@@ -540,7 +542,7 @@ function DiscountsTab({
           </div>
           
           <div className="mt-4 p-4 bg-white rounded border">
-            <h4 className="font-medium text-blue-900 mb-2">Need Help?</h4>
+            <h4 className="font-medium text-black mb-2">Need Help?</h4>
             <p className="text-sm text-blue-700">
               If your school email isn't automatically recognized, don't worry! 
               Choose the third-party verification option or contact our support team 

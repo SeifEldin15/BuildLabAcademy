@@ -148,7 +148,7 @@ export default function BootcampAdmin() {
               type="password"
               value={adminSecret}
               onChange={(e) => setAdminSecret(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 placeholder-black"
               placeholder="Enter admin secret key"
               required
             />
@@ -364,7 +364,7 @@ export default function BootcampAdmin() {
                         type="text"
                         value={contactForm.contactedBy}
                         onChange={(e) => setContactForm({ ...contactForm, contactedBy: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-black"
                         placeholder="Your name"
                         required
                       />
@@ -376,7 +376,7 @@ export default function BootcampAdmin() {
                     <textarea
                       value={contactForm.notes}
                       onChange={(e) => setContactForm({ ...contactForm, notes: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-black"
                       rows={3}
                       placeholder="What was discussed..."
                       required

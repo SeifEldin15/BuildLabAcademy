@@ -159,7 +159,7 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full pl-6 pr-36 py-4 bg-transparent text-gray-700 placeholder-gray-400 focus:outline-none rounded-2xl"
+                  className="w-full pl-6 pr-36 py-4 bg-transparent text-gray-700 placeholder-black focus:outline-none rounded-2xl"
                   disabled={isLoading}
                 />
                 <button 
