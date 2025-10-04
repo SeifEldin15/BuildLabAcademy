@@ -165,7 +165,7 @@ export default function Footer() {
                 <button 
                   type="submit"
                   disabled={isLoading}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-5 py-2 bg-button-color-1 text-black rounded-full hover:bg-blue-500 transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-5 py-2 bg-button-color-1 text-black rounded-full hover:bg-blue-500 transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {isLoading ? 'Subscribing...' : 'Subscribe'}
                 </button>

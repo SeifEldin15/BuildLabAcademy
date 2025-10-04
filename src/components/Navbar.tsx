@@ -54,13 +54,13 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <Link 
               href="/student-portal"
-              className="bg-button-color-2 text-black px-4 py-2 rounded-full hover:bg-main-color hover:text-black transition-colors font-medium"
+              className="bg-button-color-2 text-black px-4 py-2 rounded-full hover:bg-main-color hover:text-black transition-colors font-medium cursor-pointer"
             >
               Student Portal
             </Link>
             <button 
               onClick={handleApplyClick}
-              className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium"
+              className="bg-button-color-1 text-black px-6 py-2 rounded-full hover:bg-secondary-color hover:text-black transition-colors font-medium cursor-pointer"
             >
               Apply Now
             </button>

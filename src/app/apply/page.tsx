@@ -207,7 +207,7 @@ export default function ApplyPage() {
             <div className="flex justify-center space-x-6">
               <button
                 onClick={() => handleInputChange('courseType', 'group')}
-                className={`rounded-full font-medium transition-all duration-200 flex items-center space-x-2 border-2 ${
+                className={`rounded-full font-medium transition-all duration-200 flex items-center space-x-2 border-2 cursor-pointer ${
                   formData.courseType === 'group'
                     ? 'px-8 py-4 bg-accent-color text-black border-accent-color shadow-lg transform scale-102'
                     : 'px-8 py-4 bg-button-color-2 text-black hover:bg-main-color border-transparent'
@@ -218,7 +218,7 @@ export default function ApplyPage() {
               </button>
               <button
                 onClick={() => handleInputChange('courseType', 'individual')}
-                className={`rounded-full font-medium transition-all duration-200 flex items-center space-x-2 border-2 ${
+                className={`rounded-full font-medium transition-all duration-200 flex items-center space-x-2 border-2 cursor-pointer ${
                   formData.courseType === 'individual'
                     ? 'px-8 py-4 bg-main-color text-white border-main-color shadow-lg transform scale-102'
                     : 'px-8 py-4 bg-button-color-1 text-black hover:bg-secondary-color border-transparent'
@@ -547,7 +547,7 @@ export default function ApplyPage() {
                   className={`px-12 py-3 rounded-full font-medium text-lg ${
                     currentStep === 1
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-button-color-2 text-black hover:bg-main-color hover:text-black transition-colors'
+                      : 'bg-button-color-2 text-black hover:bg-main-color hover:text-black transition-colors cursor-pointer'
                   }`}
                 >
                   Back
@@ -561,7 +561,7 @@ export default function ApplyPage() {
               {currentStep < 5 && (
                 <button
                   onClick={handleNext}
-                  className="px-12 py-3 rounded-full font-medium text-lg bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors"
+                  className="px-12 py-3 rounded-full font-medium text-lg bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors cursor-pointer"
                 >
                   Next
                 </button>
@@ -570,7 +570,7 @@ export default function ApplyPage() {
               {currentStep === 5 && (
                 <button
                   onClick={handleNext}
-                  className="px-12 py-3 rounded-full font-medium text-lg bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors"
+                  className="px-12 py-3 rounded-full font-medium text-lg bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors cursor-pointer"
                 >
                   Proceed to Payment
                 </button>

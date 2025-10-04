@@ -41,7 +41,7 @@ export default function Benefits() {
               <p className="text-gray-600 mb-5 leading-relaxed text-sm">
                 We teach in class and hands-on environments, and also provide plans and resources so that you can build your own tiny house. You can do this !
               </p>
-              <button className="text-blue-500 font-semibold hover:text-blue-600 transition-colors duration-200 flex items-center">
+              <button className="text-blue-500 font-semibold hover:text-blue-600 transition-colors duration-200 flex items-center cursor-pointer">
                 LEARN MORE
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -75,7 +75,7 @@ export default function Benefits() {
               <p className="text-gray-600 mb-5 leading-relaxed text-sm">
                 We teach foundational construction skills so and provide a student portal so that you can revisit the instruction for remodeling a home, finishing a basement
               </p>
-              <button className="text-blue-500 font-semibold hover:text-blue-600 transition-colors duration-200 flex items-center">
+              <button className="text-blue-500 font-semibold hover:text-blue-600 transition-colors duration-200 flex items-center cursor-pointer">
                 LEARN MORE
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -109,7 +109,7 @@ export default function Benefits() {
               <p className="text-gray-600 mb-5 leading-relaxed text-sm">
                 We teach foundational construction skills so and provide a student portal so that you can revisit the instruction for remodeling a home, finishing a basement
               </p>
-              <button className="text-blue-500 font-semibold hover:text-blue-600 transition-colors duration-200 flex items-center">
+              <button className="text-blue-500 font-semibold hover:text-blue-600 transition-colors duration-200 flex items-center cursor-pointer">
                 LEARN MORE
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

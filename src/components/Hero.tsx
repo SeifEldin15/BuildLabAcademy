@@ -37,12 +37,12 @@ export default function Hero() {
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <Link href="/about-us">
-            <button className="bg-accent-color hover:bg-button-color-2 text-secondary-color font-bold py-3 px-6 rounded-full text-base transition-colors duration-300 min-w-[130px]">
+            <button className="bg-accent-color hover:bg-button-color-2 text-secondary-color font-bold py-3 px-6 rounded-full text-base transition-colors duration-300 min-w-[130px] cursor-pointer">
               READ MORE
             </button>
           </Link>
           <Link href="/apply">
-            <button className="bg-accent-color hover:bg-button-color-2 text-secondary-color font-bold py-3 px-6 rounded-full text-base transition-colors duration-300 min-w-[130px]">
+            <button className="bg-accent-color hover:bg-button-color-2 text-secondary-color font-bold py-3 px-6 rounded-full text-base transition-colors duration-300 min-w-[130px] cursor-pointer">
               APPLY NOW
             </button>
           </Link>
