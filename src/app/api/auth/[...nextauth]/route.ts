@@ -4,7 +4,7 @@ import pool from '@/lib/db'
 import type { Account, User } from 'next-auth'
 import type { AdapterUser } from 'next-auth/adapters'
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   // Remove the PostgresAdapter to avoid database connection issues
   providers: [
     GoogleProvider({

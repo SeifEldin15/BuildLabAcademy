@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
+import StripePayment from '@/components/StripePayment';
 
 interface ApplicationData {
   courseType: 'group' | 'individual' | '';
@@ -18,6 +19,9 @@ interface ApplicationData {
   hasSteelBoots: boolean | null;
   interestedInBootcamp: boolean | null;
   finalComments: string;
+  paymentMethod: string;
+  paymentCompleted: boolean;
+  paymentIntentId?: string;
 }
 
 export default function ApplyPage() {
@@ -36,7 +40,9 @@ export default function ApplyPage() {
     canCommit: null,
     hasSteelBoots: null,
     interestedInBootcamp: null,
-    finalComments: ''
+    finalComments: '',
+    paymentMethod: 'stripe',
+    paymentCompleted: false
   });
 
   // Redirect to login if not authenticated
@@ -69,9 +75,10 @@ export default function ApplyPage() {
     { id: 1, name: 'Interest', active: currentStep >= 1, completed: currentStep > 1 },
     { id: 2, name: 'Interest cont.', active: currentStep >= 2, completed: currentStep > 2 },
     { id: 3, name: 'Final Questions', active: currentStep >= 3, completed: currentStep > 3 },
-    { id: 4, name: 'Payment', active: currentStep >= 4, completed: currentStep > 4 },
+    { id: 4, name: 'Final Questions', active: currentStep >= 4, completed: currentStep > 4 },
     { id: 5, name: 'Review', active: currentStep >= 5, completed: currentStep > 5 },
-    { id: 6, name: 'Complete', active: currentStep >= 6, completed: false }
+    { id: 6, name: 'Payment', active: currentStep >= 6, completed: currentStep > 6 },
+    { id: 7, name: 'Complete', active: currentStep >= 7, completed: false }
   ];
 
   const handleNext = () => {
@@ -126,7 +133,7 @@ export default function ApplyPage() {
       }
     }
 
-    if (currentStep < 5) {
+    if (currentStep < 6) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -142,6 +149,20 @@ export default function ApplyPage() {
       ...prev,
       [field]: value
     }));
+  };
+
+  const handlePaymentSuccess = (paymentIntentId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      paymentCompleted: true,
+      paymentIntentId
+    }));
+    setCurrentStep(7); // Move to success page
+    handleSubmit();
+  };
+
+  const handlePaymentError = (error: string) => {
+    alert(`Payment failed: ${error}`);
   };
 
   const handleSubmit = async () => {
@@ -164,7 +185,6 @@ export default function ApplyPage() {
       }
 
       setIsSubmitted(true);
-      setCurrentStep(6); // Move to success page
     } catch (error) {
       console.error('Error submitting application:', error);
       alert(`Failed to submit application: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -416,23 +436,29 @@ export default function ApplyPage() {
               <div><strong>Interested in Bootcamp:</strong> {formData.interestedInBootcamp ? 'Yes' : 'No'}</div>
               <div><strong>Final Comments:</strong> {formData.finalComments}</div>
             </div>
-            <div className="pt-6">
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-medium text-lg transition-colors ${
-                  isSubmitting
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-green-600 text-white hover:bg-green-700'
-                }`}
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit Application'}
-              </button>
+            <div className="pt-6 text-center">
+              <p className="text-lg text-gray-600 mb-4">
+                Please review your information above, then proceed to payment.
+              </p>
+              <p className="text-2xl font-bold text-green-600">
+                Total: ${formData.courseType === 'individual' ? '500' : '300'}.00
+              </p>
             </div>
           </div>
         );
 
       case 6:
+        return (
+          <div className="space-y-6">
+            <StripePayment
+              courseType={formData.courseType as 'group' | 'individual'}
+              onPaymentSuccess={handlePaymentSuccess}
+              onPaymentError={handlePaymentError}
+            />
+          </div>
+        );
+
+      case 7:
         return (
           <div className="text-center space-y-6">
             <div className="text-6xl">🎉</div>
@@ -465,8 +491,9 @@ export default function ApplyPage() {
             {currentStep === 1 ? 'Interest' : 
              currentStep === 2 ? 'Interest' : 
              currentStep === 3 ? 'Final Questions' : 
-             currentStep === 4 ? 'Payment' : 
-             currentStep === 5 ? 'Review' : 'Complete'}
+             currentStep === 4 ? 'Final Questions' : 
+             currentStep === 5 ? 'Review' : 
+             currentStep === 6 ? 'Payment' : 'Complete'}
           </h1>
           
           <div className="space-y-0">
@@ -513,17 +540,23 @@ export default function ApplyPage() {
 
             {/* Navigation Buttons */}
             <div className="flex justify-between mt-12 pt-8">
-              <button
-                onClick={handleBack}
-                disabled={currentStep === 1}
-                className={`px-12 py-3 rounded-full font-medium text-lg ${
-                  currentStep === 1
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-button-color-2 text-black hover:bg-main-color hover:text-black transition-colors'
-                }`}
-              >
-                Back
-              </button>
+              {currentStep !== 6 && currentStep !== 7 && (
+                <button
+                  onClick={handleBack}
+                  disabled={currentStep === 1}
+                  className={`px-12 py-3 rounded-full font-medium text-lg ${
+                    currentStep === 1
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-button-color-2 text-black hover:bg-main-color hover:text-black transition-colors'
+                  }`}
+                >
+                  Back
+                </button>
+              )}
+              
+              {(currentStep === 6 || currentStep === 7) && (
+                <div className="w-full"></div>
+              )}
               
               {currentStep < 5 && (
                 <button
@@ -534,7 +567,16 @@ export default function ApplyPage() {
                 </button>
               )}
               
-              {currentStep === 6 && (
+              {currentStep === 5 && (
+                <button
+                  onClick={handleNext}
+                  className="px-12 py-3 rounded-full font-medium text-lg bg-button-color-1 text-black hover:bg-secondary-color hover:text-black transition-colors"
+                >
+                  Proceed to Payment
+                </button>
+              )}
+              
+              {(currentStep === 6 || currentStep === 7) && (
                 <div className="w-full"></div>
               )}
             </div>

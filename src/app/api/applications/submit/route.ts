@@ -40,12 +40,15 @@ export async function POST(request: NextRequest) {
     // Escape single quotes in text fields
     const escapeQuotes = (str: string) => str.replace(/'/g, "''");
 
+    // Calculate amount based on course type
+    const amount = applicationData.courseType === 'individual' ? 500.00 : 300.00;
+
     // Insert application into database
     const insertCommand = `docker exec buildlab_postgres psql -U buildlab_user -d buildlab_db -c "
       INSERT INTO applications (
         user_id, course_type, interest, additional_info, work_experience,
         existing_skills, team_role, can_commit, has_steel_boots,
-        interested_in_bootcamp, final_comments
+        interested_in_bootcamp, final_comments, payment_method, total_amount
       ) VALUES (
         '${userId}',
         '${applicationData.courseType}',
@@ -57,13 +60,15 @@ export async function POST(request: NextRequest) {
         ${applicationData.canCommit},
         ${applicationData.hasSteelBoots},
         ${applicationData.interestedInBootcamp},
-        '${escapeQuotes(applicationData.finalComments)}'
+        '${escapeQuotes(applicationData.finalComments)}',
+        '${applicationData.paymentMethod || 'stripe'}',
+        ${amount}
       );"`;
 
     await execPromise(insertCommand);
 
     // Generate a simple application ID for email reference
-    const applicationId = `APP-${Date.now()}-${userId.slice(0, 8)}`;
+    const applicationId = applicationData.paymentIntentId || `APP-${Date.now()}-${userId.slice(0, 8)}`;
 
     // Send email notification
     try {
